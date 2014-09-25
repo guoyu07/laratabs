@@ -71,7 +71,8 @@ In your controller you simply pass a variable to the view:
 
 Then in your view echo `$tabs` wherever you want the tabs to appear.
 
-IMPORTANT: if you are using the blade syntax Laravel 5 you need to use the "escape-raw-tags" blade syntax, otherwise the HTML will be echoed as text.
+IMPORTANT: if you are using the blade syntax with Laravel 5 you need to use the "escape-raw-tags" blade syntax, otherwise the HTML will be echoed as text.
+
 So instead of `{{ $tabs }}` use `{!! $tabs !!}`.
 
 ## Config
