@@ -1,0 +1,6 @@
+formatter.name: pretty
+suites:
+  tabs_suite:
+    namespace: Fish
+    src_path: src
+    spec_prefix: spec
