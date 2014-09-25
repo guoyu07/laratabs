@@ -2,7 +2,7 @@
 
 # Easily create Bootstrap tabs in your Laravel app
 
-This Laravel 4 package provides an artisan command to easily generate bootstrap tabs.
+This Laravel package provides an artisan command to easily generate bootstrap tabs.
 The package creates a unique view for each tab, and allows you to embed the tabs wherever you need in your HTML.
 This makes for a clean uncluttered code, and allows you to skip the tedious process of writing the HTML yourself and focus on the content of the tabs.
 
@@ -71,17 +71,21 @@ In your controller you simply pass a variable to the view:
 
 Then in your view echo `$tabs` wherever you want the tabs to appear.
 
+IMPORTANT: if you are using the blade syntax Laravel 5 you need to use the "escape-raw-tags" blade syntax, otherwise the HTML will be echoed as text.
+So instead of `{{ $tabs }}` use `{!! $tabs !!}`.
+
 ## Config
 
 The package allows you to config a few options, namely:
 
-1. Tabs type: tabs or pills.
-2. Tabs direction: horizontal or vertical.
-3. The path where the tabs views will be created relative to the views folder. Defaults to the key used when creating the tabs.
-4. The separator between words to be used in the artisan command. Default: _
-5. Whether or not to use a fade effect. Default: true
-6. Capitalization of the titles. Options: first_word, all_words, no_words. Default: first_word
-7. Path to the json file which saves the tabs data.
+1. Laravel version: if you are using laravel 5 update this, as the folder structure is different. Default: 4
+2. Tabs type: tabs or pills.
+3. Tabs direction: horizontal or vertical.
+4. The path where the tabs views will be created relative to the views folder. Defaults to the key used when creating the tabs.
+5. The separator between words to be used in the artisan command. Default: _
+6. Whether or not to use a fade effect. Default: true
+7. Capitalization of the titles. Options: first_word, all_words, no_words. Default: first_word
+8. Path to the json file which saves the tabs data.
 
 To change the configuration you need to publish it to your project first:
 

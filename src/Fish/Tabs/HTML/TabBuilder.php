@@ -108,6 +108,7 @@ class TabBuilder extends Tabs {
                                             'direction' => $this->config('direction', 'horizontal') == 'vertical'?"nav-stacked":"",
                                             'fade' => $this->config('fade',true,true)?"fade":""])
                                              ->render();
+        $html = htmlentities($html);
         return $html;
 
     }

@@ -1,5 +1,8 @@
 <?php return [
 
+    // select laravel version (4 or 5)
+    'laravel_version' => 4,
+
     // tabs or pills styling?
     'type' => 'tabs',
 
