@@ -40,9 +40,10 @@ abstract class Tabs {
      */
     protected function getViewsPath($key) {
 
-        $path = Config::get("tabs::views_path")?:"{{KEY}}";
+        $viewsPath = Config::get("tabs::laravel_version",4)==5?app_path() . "/../resources/views/":app_path() . "/views/";
+        $path = Config::get("tabs::views_path","{{KEY}}");
 
-        $path = app_path() . "/views/" . preg_replace("/{{KEY}}/i",$key, $path);
+        $path = $viewsPath . preg_replace("/{{KEY}}/i",$key, $path);
 
         return $path;
     }
