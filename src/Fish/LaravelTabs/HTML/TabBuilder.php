@@ -8,7 +8,9 @@
 
 namespace Fish\LaravelTabs\HTML;
 
+use Fish\LaravelTabs\HTML\Presenter\Translator;
 use Fish\LaravelTabs\Tabs;
+use Fish\LaravelTabs\HTML\Presenter\TabPresenter;
 use Fish\LaravelTabs\HTML\Exceptions\UndefinedKeyException;
 use Fish\LaravelTabs\HTML\Exceptions\MissingTabTemplateException;
 use \View;
@@ -72,11 +74,11 @@ class TabBuilder extends Tabs {
 
        foreach ($tabs as $tab):
 
-           $parsed[$i]['tab'] = new TabPresenter($tab['tab'], $this->key);
+           $parsed[$i]['tab'] = new TabPresenter($tab['tab'], new Translator($this->key));
 
            if (isset($tab['subtabs'])):
                foreach ($tab['subtabs'] as $subtab):
-                   $parsed[$i]['subtabs'][] = new TabPresenter($subtab, $this->key);
+                   $parsed[$i]['subtabs'][] = new TabPresenter($subtab, new Translator($this->key));
                endforeach;
            endif;
            $i++;
