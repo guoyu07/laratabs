@@ -85,7 +85,7 @@ The package allows you to config a few options, namely:
 4. The path where the tabs views will be created relative to the views folder. Defaults to the key used when creating the tabs.
 5. The separator between words to be used in the artisan command. Default: `_`
 6. Whether or not to use a fade effect. Default: `true`
-7. Display of the titles. Options: `uc_first_word`, `uc_all_words`, `uc_no_words`, `[locale](#locale)`. Default: uc_first_word
+7. Display of the titles. Options: `uc_first_word`, `uc_all_words`, `uc_no_words`, `locale`. Default: uc_first_word
 8. Path to the json file which saves the tabs data.
 
 To change the configuration you need to publish it to your project first:
