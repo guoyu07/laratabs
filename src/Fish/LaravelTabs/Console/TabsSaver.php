@@ -6,9 +6,9 @@
  * Time: 10:18 AM
  */
 
-namespace Fish\Tabs\Console;
+namespace Fish\LaravelTabs\Console;
 
-use Fish\Tabs\Tabs;
+use Fish\LaravelTabs\Tabs;
 
 class TabsSaver extends Tabs {
 

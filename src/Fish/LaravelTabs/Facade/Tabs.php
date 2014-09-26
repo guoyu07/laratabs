@@ -1,4 +1,4 @@
-<?php namespace Fish\Tabs\Facade;
+<?php namespace Fish\LaravelTabs\Facade;
 
 use Illuminate\Support\Facades\Facade;
 

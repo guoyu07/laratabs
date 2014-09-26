@@ -1,14 +1,14 @@
 <?php
 
-namespace Fish\Tabs\Console\Command;
+namespace Fish\LaravelTabs\Console\Command;
 
 use Illuminate\Console\Command;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputArgument;
-use Fish\Tabs\Console\FieldsParser;
-use Fish\Tabs\Console\Exceptions\InvalidFormatException;
-use Fish\Tabs\Console\TabsSaver;
-use Fish\Tabs\Console\ViewsGenerator;
+use Fish\LaravelTabs\Console\FieldsParser;
+use Fish\LaravelTabs\Console\Exceptions\InvalidFormatException;
+use Fish\LaravelTabs\Console\TabsSaver;
+use Fish\LaravelTabs\Console\ViewsGenerator;
 
 class GenerateTabsCommand extends Command {
 

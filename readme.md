@@ -27,7 +27,7 @@ Next, update Composer from the Terminal:
 
 Once this operation completes, the final step is to add the service provider. Open `app/config/app.php`, and add a new item to the providers array.
 
-    'Fish\Tabs\TabsServiceProvider'
+    'Fish\LaravelTabs\LaravelTabsServiceProvider'
 
 On the client-side remember to include bootstrap's CSS and JavaScript files. The quickest way is using a CDN:
 

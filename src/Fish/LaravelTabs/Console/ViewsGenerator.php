@@ -6,9 +6,9 @@
  * Time: 11:15 AM
  */
 
-namespace Fish\Tabs\Console;
+namespace Fish\LaravelTabs\Console;
 
-use Fish\Tabs\Tabs;
+use Fish\LaravelTabs\Tabs;
 
 class ViewsGenerator extends Tabs {
 

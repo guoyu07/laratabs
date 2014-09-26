@@ -6,9 +6,9 @@
  * Time: 10:31 PM
  */
 
-namespace Fish\Tabs\HTML;
+namespace Fish\LaravelTabs\HTML;
 
-use Fish\Tabs\Tabs;
+use Fish\LaravelTabs\Tabs;
 
 class TabPresenter extends Tabs {
 

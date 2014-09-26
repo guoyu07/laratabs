@@ -20,7 +20,7 @@
     },
     "autoload": {
         "psr-0": {
-            "Fish\\Tabs": "src/"
+            "Fish\\LaravelTabs": "src/"
         }
     },
     "minimum-stability": "stable"

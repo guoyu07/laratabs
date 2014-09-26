@@ -1,12 +1,12 @@
 <?php
-namespace Fish\Tabs;
+namespace Fish\LaravelTabs;
 
-use Fish\Tabs\HTML\TabBuilder;
+use Fish\LaravelTabs\HTML\TabBuilder;
 use Illuminate\Foundation\AliasLoader;
 use Illuminate\Support\ServiceProvider;
 use \Artisan;
 
-class TabsServiceProvider extends ServiceProvider {
+class LaravelTabsServiceProvider extends ServiceProvider {
 
     /**
      * boot up the service provicer
@@ -17,7 +17,7 @@ class TabsServiceProvider extends ServiceProvider {
 
         // bind artisan command to the IoC container
         $this->app->bind('fish::command.tabs', function() {
-            return $this->app->make('Fish\Tabs\Console\Command\GenerateTabsCommand');
+            return $this->app->make('Fish\LaravelTabs\Console\Command\GenerateTabsCommand');
         });
 
         $this->commands(array(
@@ -25,7 +25,7 @@ class TabsServiceProvider extends ServiceProvider {
         ));
 
         // Generate alias for the Tabs facade
-        AliasLoader::getInstance()->alias('Tabs','Fish\Tabs\Facade\Tabs');
+        AliasLoader::getInstance()->alias('Tabs','Fish\LaravelTabs\Facade\Tabs');
     }
 
     /**

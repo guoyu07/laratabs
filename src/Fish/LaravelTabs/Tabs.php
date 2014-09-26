@@ -6,7 +6,7 @@
  * Time: 12:25 PM
  */
 
-namespace Fish\Tabs;
+namespace Fish\LaravelTabs;
 
 use \Config;
 

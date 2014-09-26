@@ -1,8 +1,8 @@
 <?php
 
-namespace Fish\Tabs\Console;
+namespace Fish\LaravelTabs\Console;
 
-use Fish\Tabs\Console\Exceptions\InvalidFormatException;
+use Fish\LaravelTabs\Console\Exceptions\InvalidFormatException;
 
 class FieldsParser
 {

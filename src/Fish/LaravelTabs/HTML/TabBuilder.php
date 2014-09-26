@@ -6,11 +6,11 @@
  * Time: 9:40 PM
  */
 
-namespace Fish\Tabs\HTML;
+namespace Fish\LaravelTabs\HTML;
 
-use Fish\Tabs\Tabs;
-use Fish\Tabs\HTML\Exceptions\UndefinedKeyException;
-use Fish\Tabs\HTML\Exceptions\MissingTabTemplateException;
+use Fish\LaravelTabs\Tabs;
+use Fish\LaravelTabs\HTML\Exceptions\UndefinedKeyException;
+use Fish\LaravelTabs\HTML\Exceptions\MissingTabTemplateException;
 use \View;
 use \Config;
 use Exception;

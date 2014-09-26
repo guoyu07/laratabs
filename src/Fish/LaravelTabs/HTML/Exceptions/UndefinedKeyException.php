@@ -6,7 +6,7 @@
  * Time: 11:59 AM
  */
 
-namespace Fish\Tabs\HTML\Exceptions;
+namespace Fish\LaravelTabs\HTML\Exceptions;
 
 use Exception;
 

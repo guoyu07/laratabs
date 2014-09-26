@@ -6,7 +6,7 @@
  * Time: 7:36 PM
  */
 
-namespace Fish\Tabs\Console\Exceptions;
+namespace Fish\LaravelTabs\Console\Exceptions;
 
 
 class InvalidFormatException extends \Exception {
