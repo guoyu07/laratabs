@@ -28,9 +28,6 @@
     //          uc_no_words
     //          locale
 
-    'display' => "uc_first_word",
-
-    // where will the tabs info be stored?
-    'tabs_file_path'=> app_path(). "/.."
+    'display' => "uc_first_word"
 
 ];
