@@ -85,7 +85,7 @@ The package allows you to config a few options, namely:
 4. The path where the tabs views will be created relative to the views folder. Defaults to the key used when creating the tabs.
 5. The separator between words to be used in the artisan command. Default: _
 6. Whether or not to use a fade effect. Default: true
-7. Capitalization of the titles. Options: first_word, all_words, no_words. Default: first_word
+7. Display of the titles. Options: uc_first_word, uc_all_words, uc_no_words, [locale](#locale). Default: first_word
 8. Path to the json file which saves the tabs data.
 
 To change the configuration you need to publish it to your project first:
@@ -95,3 +95,24 @@ To change the configuration you need to publish it to your project first:
 The path to the published file is:
 
     app/config/packages/fish/laravel-tabs/config.php
+
+### Locale
+
+The locale option will look for the translation in a `tabs.php` file under the current locale.
+The array structure returned from the file should be constructed as follows:
+
+    [
+        'some-key'=> [
+           'tab1' => 'Tab no. 1'
+           'tab2' => 'Tab no. 2'
+           'tab3' => 'Tab no. 3'
+        ]
+
+        'some-other-key'=> [
+           'tab4' => 'Tab no. 4'
+           'tab5' => 'Tab no. 5'
+           'tab6' => 'Tab no. 6'
+        ]
+    ]
+
+If no translation is found it will fallback to `uc_first_word`.

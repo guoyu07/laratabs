@@ -52,7 +52,12 @@ class TabBuilder extends Tabs {
         $tabs = $this->convertTabsToPresenters($tabs[$key]);
 
         $this->tabs = $tabs;
-
+        $html =  View::make('tabs::tabs', ['folder' => $this->key,
+            'tabs' => $this->tabs,
+            'type' => $this->config('type', 'tabs'),
+            'direction' => $this->config('direction', 'horizontal') == 'vertical'?"nav-stacked":"",
+            'fade' => $this->config('fade',true,true)?"fade":""])
+            ->render();
         return $this;
     }
 
@@ -67,11 +72,11 @@ class TabBuilder extends Tabs {
 
        foreach ($tabs as $tab):
 
-           $parsed[$i]['tab'] = new TabPresenter($tab['tab']);
+           $parsed[$i]['tab'] = new TabPresenter($tab['tab'], $this->key);
 
            if (isset($tab['subtabs'])):
                foreach ($tab['subtabs'] as $subtab):
-                   $parsed[$i]['subtabs'][] = new TabPresenter($subtab);
+                   $parsed[$i]['subtabs'][] = new TabPresenter($subtab, $this->key);
                endforeach;
            endif;
            $i++;

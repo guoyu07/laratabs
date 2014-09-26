@@ -22,11 +22,13 @@
     // which words separator to use in the artisan command?
     'separator'=> "_",
 
-    // capitaliztion while view the pretty name
-    // options: first_word
-    //          all_words
-    //          non_words
-  'capitalization' => 'first_word',
+    // how should the tab names be displayed?
+    // options: uc_first_word
+    //          uc_all_words
+    //          uc_no_words
+    //          locale
+
+    'display' => "uc_first_word",
 
     // where will the tabs info be stored?
     'tabs_file_path'=> app_path(). "/.."
