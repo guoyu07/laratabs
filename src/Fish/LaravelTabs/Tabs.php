@@ -8,19 +8,40 @@
 
 namespace Fish\LaravelTabs;
 
-use \Config;
+use Illuminate\Config\Repository as Config;
+use Illuminate\Foundation\Application as App;
 
 abstract class Tabs {
+
+   /**
+    * @var Config
+    */
+    protected $conf;
+
+    /**
+     * @var \Illuminate\Foundation\Application
+     */
+    protected $app;
+
+    /**
+    * inject the config class
+     */
+    public function __construct(App $app) {
+
+        $this->app = $app;
+        $this->conf = $app['config'];
+
+    }
 
     /**
      * converts the nested associative array of name to a simple index array
      * @return array
      */
-    protected function convertTabNamesToSimpleArray() {
+    protected function convertTabNamesToSimpleArray($tabs) {
 
         $parsed = [];
 
-        foreach ($this->tabs as $tab):
+        foreach ($tabs as $tab):
            if (!isset($tab['subtabs'])):
             $parsed[] = $tab['tab'];
           else:
@@ -40,8 +61,8 @@ abstract class Tabs {
      */
     protected function getViewsPath($key) {
 
-        $viewsPath = Config::get("tabs::laravel_version",4)==5?app_path() . "/../resources/views/":app_path() . "/views/";
-        $path = Config::get("tabs::views_path","{{KEY}}");
+        $viewsPath = $this->conf->get("tabs::laravel_version",4)==5? $this->app['path.base']."/resources/views/": $this->app['path.base']. "/app/views/";
+        $path = $this->conf->get("tabs::views_path","{{KEY}}");
 
         $path = $viewsPath . preg_replace("/{{KEY}}/i",$key, $path);
 
@@ -55,7 +76,7 @@ abstract class Tabs {
      */
     protected function config($key,$default, $bool = false) {
 
-        $conf = Config::get("tabs::{$key}");
+        $conf = $this->conf->get("tabs::{$key}");
 
         return ($conf || (!$conf && $bool))?$conf:$default;
 
@@ -68,11 +89,15 @@ abstract class Tabs {
     protected function recursiveMkdir($path) {
 
         $path = explode("/",$path);
+
         $viewsIndex = array_search("views",$path);
+
         for ($i=$viewsIndex+1; $i<count($path); $i++):
             $folder = implode("/",array_slice($path,0,$i+1));
 
-            if (!is_dir($folder)) mkdir($folder);
+            if (!is_dir($folder)):
+                mkdir($folder);
+            endif;
         endfor;
 
         return true;
@@ -84,7 +109,7 @@ abstract class Tabs {
      */
     protected function tabsFile() {
 
-        $file = $this->config('tabs_file_path',app_path() . "/..") . "/tabs.json";
+        $file =  $this->app['path.base'] . "/tabs.json";
 
         return $file;
 

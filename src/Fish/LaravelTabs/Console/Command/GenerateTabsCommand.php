@@ -9,6 +9,7 @@ use Fish\LaravelTabs\Console\FieldsParser;
 use Fish\LaravelTabs\Console\Exceptions\InvalidFormatException;
 use Fish\LaravelTabs\Console\TabsSaver;
 use Fish\LaravelTabs\Console\ViewsGenerator;
+use Illuminate\Foundation\Application as App;
 
 class GenerateTabsCommand extends Command {
 
@@ -36,11 +37,12 @@ class GenerateTabsCommand extends Command {
 	 *
 	 * @return void
 	 */
-	public function __construct(FieldsParser $parser)
+	public function __construct(FieldsParser $parser, App $app)
 	{
 		parent::__construct();
 
         $this->parser = $parser;
+        $this->app = $app;
 
 	}
 
@@ -57,13 +59,13 @@ class GenerateTabsCommand extends Command {
 
         $parsed = $this->parser->parse($tabs);
 
-        $saver  = new TabsSaver($key, $parsed);
+        $saver  = $this->app->make('Fish\\LaravelTabs\\Console\\TabsSaver');
 
-        $saver->save();
+        $saver->save($key, $parsed);
 
-        $viewGenerator = new ViewsGenerator($key, $parsed);
+        $viewGenerator = $this->app->make('Fish\\LaravelTabs\\Console\\ViewsGenerator');
 
-        $viewGenerator->generate($parsed);
+        $viewGenerator->generate($key, $parsed);
 
         $this->info("Tabs were generated successfully with the key '$key'.\nTo fetch the HTML assign Tabs::get('$key') to a variable, pass it to the main view and echo it.");
 	}

@@ -4,3 +4,5 @@ suites:
     namespace: Fish
     src_path: src
     spec_prefix: spec
+extensions:
+    PhpSpec\Laravel\Extension\LaravelExtension

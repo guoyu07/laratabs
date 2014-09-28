@@ -12,35 +12,15 @@ use Fish\LaravelTabs\Tabs;
 
 class TabsSaver extends Tabs {
 
-    /**
-    * @var
-     */
-    protected $key;
-
-    /**
-     * @var array
-     */
-    protected $tabs;
-
-
-    /**
-     * @param array $tabs
-     */
-    public function __construct($key, Array $tabs) {
-
-        $this->key = $key;
-        $this->tabs = $tabs;
-
-    }
 
     /**
      * updates the tabs in tabs.json
      * @return mixed
      */
-    public function save() {
+    public function save($key, $parsed) {
 
         $tabs = file_exists($this->tabsFile())?$this->getTabsFile():[];
-        $tabs[$this->key] = $this->tabs;
+        $tabs[$key] = $parsed;
 
         $this->updateTabsFile($tabs);
 

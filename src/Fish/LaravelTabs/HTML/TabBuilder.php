@@ -8,13 +8,9 @@
 
 namespace Fish\LaravelTabs\HTML;
 
-use Fish\LaravelTabs\HTML\Presenter\Translator;
 use Fish\LaravelTabs\Tabs;
-use Fish\LaravelTabs\HTML\Presenter\TabPresenter;
 use Fish\LaravelTabs\HTML\Exceptions\UndefinedKeyException;
 use Fish\LaravelTabs\HTML\Exceptions\MissingTabTemplateException;
-use \View;
-use \Config;
 use Exception;
 
 class TabBuilder extends Tabs {
@@ -29,13 +25,19 @@ class TabBuilder extends Tabs {
      */
     protected $key;
 
+    /**
+     * @var array of variables to pass to the view
+     */
+    protected $data;
+
 
     /**
      * @return mixed
      */
-    public function get($key) {
+    public function get($key, $data = []) {
 
         $this->key = $key;
+        $this->data = $data;
 
         $file = $this->tabsFile();
 
@@ -54,12 +56,7 @@ class TabBuilder extends Tabs {
         $tabs = $this->convertTabsToPresenters($tabs[$key]);
 
         $this->tabs = $tabs;
-        $html =  View::make('tabs::tabs', ['folder' => $this->key,
-            'tabs' => $this->tabs,
-            'type' => $this->config('type', 'tabs'),
-            'direction' => $this->config('direction', 'horizontal') == 'vertical'?"nav-stacked":"",
-            'fade' => $this->config('fade',true,true)?"fade":""])
-            ->render();
+
         return $this;
     }
 
@@ -74,11 +71,15 @@ class TabBuilder extends Tabs {
 
        foreach ($tabs as $tab):
 
-           $parsed[$i]['tab'] = new TabPresenter($tab['tab'], new Translator($this->key));
+           $parsed[$i]['tab'] = $this->app->make("Fish\\LaravelTabs\\HTML\\Presenter\\TabPresenter",
+               [$this->key,$tab['tab']]);
+
 
            if (isset($tab['subtabs'])):
                foreach ($tab['subtabs'] as $subtab):
-                   $parsed[$i]['subtabs'][] = new TabPresenter($subtab, new Translator($this->key));
+                   $parsed[$i]['subtabs'][] =  $this->app->make("Fish\\LaravelTabs\\HTML\\Presenter\\TabPresenter",
+                   [$this->key,$subtab]);
+
                endforeach;
            endif;
            $i++;
@@ -89,7 +90,7 @@ class TabBuilder extends Tabs {
 
     private function missingView() {
 
-        $tabs = $this->convertTabNamesToSimpleArray();
+        $tabs = $this->convertTabNamesToSimpleArray($this->tabs);
 
         $missing = false;
         $path = $this->getViewsPath($this->key);
@@ -109,11 +110,17 @@ class TabBuilder extends Tabs {
      */
     public function __toString() {
 
-        $html =  View::make('tabs::tabs', ['folder' => $this->key,
-                                            'tabs' => $this->tabs,
-                                            'type' => $this->config('type', 'tabs'),
-                                            'direction' => $this->config('direction', 'horizontal') == 'vertical'?"nav-stacked":"",
-                                            'fade' => $this->config('fade',true,true)?"fade":""])
+        $viewsPath = $this->conf->get("tabs::views_path","{{KEY}}");
+        $viewsPath = preg_replace("/{{KEY}}/i",$this->key,$viewsPath);
+
+        $viewData =  ['folder' => $viewsPath,
+            'tabs' => $this->tabs,
+            'type' => $this->config('type', 'tabs'),
+            'direction' => $this->config('direction', 'horizontal') == 'vertical'?"nav-stacked":"",
+            'fade' => $this->config('fade',true,true)?"fade":""];
+        $viewData = array_merge($viewData, $this->data);
+
+        $html =  $this->app['view']->make('tabs::tabs',$viewData)
                                              ->render();
         return $html;
 

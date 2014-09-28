@@ -12,30 +12,13 @@ use Fish\LaravelTabs\Tabs;
 
 class ViewsGenerator extends Tabs {
 
-    /**
-     * @var
-     */
-    protected $key;
-    /**
-     * @var
-     */
-    protected $tabs;
 
-    /**
-     * @param $key
-     * @param array $tabs
-     */
-    public function __construct($key, Array $tabs) {
-        $this->key = $key;
-        $this->tabs = $tabs;
-    }
-
-    public function generate() {
+    public function generate($key, $tabs) {
 
         $success = [];
 
-        $tabs = $this->convertTabNamesToSimpleArray();
-        $path = $this->getViewsPath($this->key);
+        $tabs = $this->convertTabNamesToSimpleArray($tabs);
+        $path = $this->getViewsPath($key);
 
         if (!is_dir($path)) {
             $this->recursiveMkdir($path);

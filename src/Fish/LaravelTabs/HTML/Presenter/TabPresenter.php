@@ -9,27 +9,30 @@
 namespace Fish\LaravelTabs\HTML\Presenter;
 
 use Fish\LaravelTabs\Tabs;
+use Illuminate\Foundation\Application as App;
 
 class TabPresenter extends Tabs {
+
+    /**
+    * @var string
+     */
+    protected $key;
 
     /**
      * @var string
      */
     protected $tab;
 
-    /**
-    * @var Translator
-     */
-    protected $translator;
 
     /**
      * @param $tab
      * #@param $key
      */
-    public function __construct($tab, Translator $translator) {
+    public function __construct($key ,$tab, App $app) {
 
         $this->tab = $tab;
-        $this->translator = $translator;
+        $this->key = $key;
+        parent::__construct($app);
 
     }
 
@@ -55,7 +58,8 @@ class TabPresenter extends Tabs {
                     // do nothing
                     break;
                 case "locale":
-                    $title = $this->translator->trans($pieces);
+                    $translator = new Translator($this->key);
+                    $title = $translator->trans($pieces);
                     break;
             endswitch;
 

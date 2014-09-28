@@ -1,7 +1,6 @@
 <?php
 namespace Fish\LaravelTabs;
 
-use Fish\LaravelTabs\HTML\TabBuilder;
 use Illuminate\Foundation\AliasLoader;
 use Illuminate\Support\ServiceProvider;
 use \Artisan;
@@ -35,7 +34,7 @@ class LaravelTabsServiceProvider extends ServiceProvider {
     {
         $this->app->bind('tabs', function () {
 
-        return new TabBuilder();
+        return $this->app->make("Fish\\LaravelTabs\\HTML\\TabBuilder");
         });
     }
 }
