@@ -9,9 +9,14 @@
 namespace Fish\LaravelTabs\HTML;
 
 use Fish\LaravelTabs\Tabs;
+use Illuminate\Config\Repository as Config;
+use Illuminate\View\Factory as View;
+use Illuminate\Foundation\Application as App;
 use Fish\LaravelTabs\HTML\Exceptions\UndefinedKeyException;
 use Fish\LaravelTabs\HTML\Exceptions\MissingTabTemplateException;
 use Exception;
+
+
 
 class TabBuilder extends Tabs {
 
@@ -30,7 +35,26 @@ class TabBuilder extends Tabs {
      */
     protected $data;
 
+   /**
+    * @var \Illuminate\View\Factory
+    */
+    protected $view;
 
+    /**
+    * @var
+     */
+    protected $config;
+
+    /**
+    * @var \Illuminate\Foundation\Application
+     */
+    protected $app;
+
+    public function __construct(View $view, Config $config, App $app) {
+        $this->view = $view;
+        $this->app = $app;
+        parent::__construct($config);
+    }
     /**
      * @return mixed
      */
@@ -93,6 +117,7 @@ class TabBuilder extends Tabs {
         $tabs = $this->convertTabNamesToSimpleArray($this->tabs);
 
         $missing = false;
+
         $path = $this->getViewsPath($this->key);
 
         foreach ($tabs as $name):
@@ -120,7 +145,7 @@ class TabBuilder extends Tabs {
             'fade' => $this->config('fade',true,true)?"fade":""];
         $viewData = array_merge($viewData, $this->data);
 
-        $html =  $this->app['view']->make('tabs::tabs',$viewData)
+        $html =  $this->view->make('tabs::tabs',$viewData)
                                              ->render();
         return $html;
 

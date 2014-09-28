@@ -9,8 +9,7 @@
 namespace Fish\LaravelTabs\HTML\Presenter;
 
 use Fish\LaravelTabs\Tabs;
-use Illuminate\Foundation\Application as App;
-
+use Illuminate\Config\Repository as Config;
 class TabPresenter extends Tabs {
 
     /**
@@ -23,16 +22,17 @@ class TabPresenter extends Tabs {
      */
     protected $tab;
 
+    protected $app;
 
     /**
      * @param $tab
      * #@param $key
      */
-    public function __construct($key ,$tab, App $app) {
 
+    public function __construct($key ,$tab, Config $config) {
         $this->tab = $tab;
         $this->key = $key;
-        parent::__construct($app);
+        parent::__construct($config);
 
     }
 
