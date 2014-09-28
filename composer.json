@@ -19,9 +19,8 @@
         "phpspec/phpspec":"2.0.*"
     },
     "autoload": {
-        "psr-4": {
-            "Fish\\": "src/",
-            "spec\\": "spec/"
+        "psr-0": {
+            "Fish\\LaravelTabs": "src/"
         }
     },
     "minimum-stability": "stable"
