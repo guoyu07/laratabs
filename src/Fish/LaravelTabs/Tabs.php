@@ -8,8 +8,7 @@
 
 namespace Fish\LaravelTabs;
 
-use Illuminate\Config\Repository as Config;
-
+use Illuminate\Support\Facades\Config;
 
 abstract class Tabs {
 
@@ -23,14 +22,7 @@ abstract class Tabs {
      */
     protected $app;
 
-    /**
-    * inject the config class
-     */
-    public function __construct(Config $conf) {
 
-        $this->conf = $conf;
-
-    }
 
     /**
      * converts the nested associative array of name to a simple index array
@@ -60,8 +52,8 @@ abstract class Tabs {
      */
     protected function getViewsPath($key) {
 
-        $viewsPath = $this->conf->get("tabs::laravel_version",4)==5? base_path()."/resources/views/": base_path(). "/app/views/";
-        $path = $this->conf->get("tabs::views_path","{{KEY}}");
+        $viewsPath = Config::get("tabs::laravel_version",4)==5? base_path()."/resources/views/": base_path(). "/app/views/";
+        $path = COnfig::get("tabs::views_path","{{KEY}}");
 
         $path = $viewsPath . preg_replace("/{{KEY}}/i",$key, $path);
 
@@ -75,7 +67,7 @@ abstract class Tabs {
      */
     protected function config($key,$default, $bool = false) {
 
-        $conf = $this->conf->get("tabs::{$key}");
+        $conf = Config::get("tabs::{$key}");
 
         return ($conf || (!$conf && $bool))?$conf:$default;
 
@@ -106,7 +98,7 @@ abstract class Tabs {
      * get tabs file path
     * @return string
      */
-    protected function tabsFile() {
+    public function tabsFile() {
 
         $file =  base_path() . "/tabs.json";
 

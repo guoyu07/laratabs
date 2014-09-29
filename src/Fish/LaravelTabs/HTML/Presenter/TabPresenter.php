@@ -29,10 +29,9 @@ class TabPresenter extends Tabs {
      * #@param $key
      */
 
-    public function __construct($key ,$tab, Config $config) {
+    public function __construct($key ,$tab) {
         $this->tab = $tab;
         $this->key = $key;
-        parent::__construct($config);
 
     }
 

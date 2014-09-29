@@ -7,14 +7,14 @@
  */
 
 namespace Fish\LaravelTabs\HTML;
-
+use Illuminate\Support\Facades\Config;
 use Fish\LaravelTabs\Tabs;
-use Illuminate\Config\Repository as Config;
-use Illuminate\View\Factory as View;
+use Illuminate\Support\Facades\View;
 use Illuminate\Foundation\Application as App;
 use Fish\LaravelTabs\HTML\Exceptions\UndefinedKeyException;
 use Fish\LaravelTabs\HTML\Exceptions\MissingTabTemplateException;
 use Exception;
+use Fish\LaravelTabs\HTML\Presenter\TabPresenter;
 
 
 
@@ -50,11 +50,7 @@ class TabBuilder extends Tabs {
      */
     protected $app;
 
-    public function __construct(View $view, Config $config, App $app) {
-        $this->view = $view;
-        $this->app = $app;
-        parent::__construct($config);
-    }
+
     /**
      * @return mixed
      */
@@ -95,19 +91,18 @@ class TabBuilder extends Tabs {
 
        foreach ($tabs as $tab):
 
-           $parsed[$i]['tab'] = $this->app->make("Fish\\LaravelTabs\\HTML\\Presenter\\TabPresenter",
-               [$this->key,$tab['tab']]);
-
+           $parsed[$i]['tab'] = new TabPresenter($this->key,$tab['tab']);
 
            if (isset($tab['subtabs'])):
                foreach ($tab['subtabs'] as $subtab):
-                   $parsed[$i]['subtabs'][] =  $this->app->make("Fish\\LaravelTabs\\HTML\\Presenter\\TabPresenter",
-                   [$this->key,$subtab]);
+
+                   $parsed[$i]['subtabs'][] = new TabPresenter($this->key,$subtab);
 
                endforeach;
            endif;
            $i++;
         endforeach;
+
 
        return $parsed;
     }
@@ -135,7 +130,7 @@ class TabBuilder extends Tabs {
      */
     public function __toString() {
 
-        $viewsPath = $this->conf->get("tabs::views_path","{{KEY}}");
+        $viewsPath = Config::get("tabs::views_path","{{KEY}}");
         $viewsPath = preg_replace("/{{KEY}}/i",$this->key,$viewsPath);
 
         $viewData =  ['folder' => $viewsPath,
@@ -145,7 +140,7 @@ class TabBuilder extends Tabs {
             'fade' => $this->config('fade',true,true)?"fade":""];
         $viewData = array_merge($viewData, $this->data);
 
-        $html =  $this->view->make('tabs::tabs',$viewData)
+        $html =  View::make('tabs::tabs',$viewData)
                                              ->render();
         return $html;
 

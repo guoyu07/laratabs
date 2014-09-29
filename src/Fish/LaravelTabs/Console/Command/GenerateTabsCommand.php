@@ -7,10 +7,7 @@ use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputArgument;
 use Fish\LaravelTabs\Console\FieldsParser;
 use Fish\LaravelTabs\Console\Exceptions\InvalidFormatException;
-use Fish\LaravelTabs\Console\TabsSaver;
-use Fish\LaravelTabs\Console\ViewsGenerator;
-use Illuminate\Foundation\Application as App;
-
+use App;
 class GenerateTabsCommand extends Command {
 
     /**
@@ -37,12 +34,12 @@ class GenerateTabsCommand extends Command {
 	 *
 	 * @return void
 	 */
-	public function __construct(FieldsParser $parser, App $app)
+	public function __construct(FieldsParser $parser)
 	{
 		parent::__construct();
 
         $this->parser = $parser;
-        $this->app = $app;
+
 
 	}
 
@@ -59,11 +56,11 @@ class GenerateTabsCommand extends Command {
 
         $parsed = $this->parser->parse($tabs);
 
-        $saver  = $this->app->make('Fish\\LaravelTabs\\Console\\TabsSaver');
+        $saver  = App::make('Fish\\LaravelTabs\\Console\\TabsSaver');
 
         $saver->save($key, $parsed);
 
-        $viewGenerator = $this->app->make('Fish\\LaravelTabs\\Console\\ViewsGenerator');
+        $viewGenerator = App::make('Fish\\LaravelTabs\\Console\\ViewsGenerator');
 
         $viewGenerator->generate($key, $parsed);
 
