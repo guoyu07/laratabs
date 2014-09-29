@@ -13,7 +13,7 @@
     ],
     "require": {
         "php": ">=5.4.0",
-        "illuminate/support": ">=4.0"
+        "illuminate/support": "~4.0|~4.1|~4.2|~5.0"
     },
 
     "require-dev": {
@@ -24,11 +24,7 @@
         "psr-0": {
             "Fish\\LaravelTabs": "src/"
 
-        },
-        "files":[
-            "tests/functional/TabsTester.php",
-            "tests/_support/helpers.php"
-        ]
+        }
     },
     "minimum-stability": "stable"
 }
