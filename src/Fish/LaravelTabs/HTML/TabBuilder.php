@@ -35,6 +35,11 @@ class TabBuilder extends Tabs {
      */
     protected $data;
 
+    /**
+    * @var array of options (allows overriding the global config)
+     */
+    protected $options;
+
    /**
     * @var \Illuminate\View\Factory
     */
@@ -54,10 +59,11 @@ class TabBuilder extends Tabs {
     /**
      * @return mixed
      */
-    public function get($key, $data = []) {
+    public function get($key, $data = [], $options = []) {
 
         $this->key = $key;
         $this->data = $data;
+        $this->options = $options;
 
         $file = $this->tabsFile();
 
@@ -135,13 +141,14 @@ class TabBuilder extends Tabs {
 
         $viewData =  ['folder' => $viewsPath,
             'tabs' => $this->tabs,
-            'type' => $this->config('type', 'tabs'),
-            'direction' => $this->config('direction', 'horizontal') == 'vertical'?"nav-stacked":"",
-            'fade' => $this->config('fade',true,true)?"fade":""];
+            'type' => $this->config('type', 'tabs', $this->options),
+            'direction' => $this->config('direction', 'horizontal',  $this->options) == 'vertical'?"nav-stacked":"",
+            'fade' => $this->config('fade',true,$this->options)?"fade":""];
+
         $viewData = array_merge($viewData, $this->data);
 
-        $html =  View::make('tabs::tabs',$viewData)
-                                             ->render();
+        $html =  View::make('tabs::tabs',$viewData)->render();
+
         return $html;
 
     }

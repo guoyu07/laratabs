@@ -73,6 +73,8 @@ Then in your view echo `$tabs` wherever you want the tabs to appear.
 
 If you need to send data to the views pass an associative array as the second parameter, just like you would when returning a view.
 
+If you want to override the global config file for a specific set of tabs, pass an associative array as the third parameter.
+
 IMPORTANT: if you are using the blade syntax with Laravel 5 you need to use the HTML echo syntax, otherwise the HTML will be escaped and echoed as text.
 
 So instead of `{{ $tabs }}` use `{!! $tabs !!}`.

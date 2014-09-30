@@ -68,11 +68,18 @@ abstract class Tabs {
     * @param $default
      * @return mixed
      */
-    protected function config($key,$default, $bool = false) {
+    protected function config($key, $default, $options = []) {
 
-        $conf = Config::get("tabs::{$key}");
+        $allowed = ['direction'=>['horizontal','vertical'],
+                    'type'=>['tabs','pills'],
+                    'fade'=>[true,false]];
 
-        return ($conf || (!$conf && $bool))?$conf:$default;
+        if (isset($options[$key]) && !in_array($options[$key],$allowed[$key]))
+            return $default;
+
+        $conf = isset($options[$key])?$options[$key]:Config::get("tabs::{$key}", $default);
+
+        return $conf;
 
     }
 
