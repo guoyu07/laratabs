@@ -81,13 +81,12 @@ So instead of `{{ $tabs }}` use `{!! $tabs !!}`.
 
 The package allows you to config a few options, namely:
 
-1. Laravel version: if you are using laravel 5 update this, as the folder structure is different. Default: `4`
-2. Tabs type: `tabs` or `pills`.
-3. Tabs direction: `horizontal` or `vertical`.
-4. The path where the tabs views will be created relative to the views folder. Defaults to the key used when creating the tabs.
-5. The separator between words to be used in the artisan command. Default: `_`
-6. Whether or not to use a fade effect. Default: `true`
-7. Display of the titles. Options: `uc_first_word`, `uc_all_words`, `uc_no_words`, `locale`. Default: `uc_first_word`
+1. Tabs type: `tabs` or `pills`.
+2. Tabs direction: `horizontal` or `vertical`.
+3. The path where the tabs views will be created relative to the views folder. Defaults to the key used when creating the tabs.
+4. The separator between words to be used in the artisan command. Default: `_`
+5. Whether or not to use a fade effect. Default: `true`
+6. Display of the titles. Options: `uc_first_word`, `uc_all_words`, `uc_no_words`, `locale`. Default: `uc_first_word`
 
 #### Locale
 

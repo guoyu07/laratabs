@@ -9,6 +9,7 @@
 namespace Fish\LaravelTabs;
 
 use Illuminate\Support\Facades\Config;
+use Illuminate\Foundation\Application as App;
 
 abstract class Tabs {
 
@@ -22,7 +23,9 @@ abstract class Tabs {
      */
     protected $app;
 
-
+    public function __construct() {
+        $this->app = new App;
+    }
 
     /**
      * converts the nested associative array of name to a simple index array
@@ -52,8 +55,8 @@ abstract class Tabs {
      */
     protected function getViewsPath($key) {
 
-        $viewsPath = Config::get("tabs::laravel_version",4)==5? base_path()."/resources/views/": base_path(). "/app/views/";
-        $path = COnfig::get("tabs::views_path","{{KEY}}");
+        $viewsPath = $this->getLaravelVersion()==5? base_path()."/resources/views/": base_path(). "/app/views/";
+        $path = Config::get("tabs::views_path","{{KEY}}");
 
         $path = $viewsPath . preg_replace("/{{KEY}}/i",$key, $path);
 
@@ -71,6 +74,10 @@ abstract class Tabs {
 
         return ($conf || (!$conf && $bool))?$conf:$default;
 
+    }
+
+    private function getLaravelVersion() {
+        return substr(App::VERSION,0,1);
     }
 
     /**
