@@ -21,9 +21,14 @@ use Fish\LaravelTabs\HTML\Presenter\TabPresenter;
 class TabBuilder extends Tabs {
 
     /**
-     * @var array
+     * @var array associative array of tabs and subtabs
      */
     public $tabs;
+
+    /**
+    * @var array of tab presenter objects
+     */
+    public $tabsPresenters;
 
     /**
     * @var
@@ -79,9 +84,7 @@ class TabBuilder extends Tabs {
         if ($view = $this->missingView())
             throw new MissingTabTemplateException("The view {$view} for the key '{$key}' could not be found");
 
-        $tabs = $this->convertTabsToPresenters($tabs[$key]);
-
-        $this->tabs = $tabs;
+        $this->tabsPresenters =  $this->convertTabsToPresenters($tabs[$key]);
 
         return $this;
     }
@@ -139,13 +142,23 @@ class TabBuilder extends Tabs {
         $viewsPath = Config::get("tabs::views_path","{{KEY}}");
         $viewsPath = preg_replace("/{{KEY}}/i",$this->key,$viewsPath);
 
+        $tabs = $this->convertTabNamesToSimpleArray($this->tabs, true);
+
         $viewData =  ['folder' => $viewsPath,
-            'tabs' => $this->tabs,
+            'tabs' => $this->tabsPresenters,
             'type' => $this->config('type', 'tabs', $this->options),
             'direction' => $this->config('direction', 'horizontal',  $this->options) == 'vertical'?"nav-stacked":"",
             'fade' => $this->config('fade',true,$this->options)?"fade":""];
 
         $viewData = array_merge($viewData, $this->data);
+
+        if (isset($this->options['except']) or isset($this->options['only'])):
+            $only = isset($this->options['only'])?
+                   $this->options['only']:
+                   array_diff($tabs, $this->options['except']);
+
+            $viewData = array_merge($viewData, ['only'=>$only]);
+        endif;
 
         $html =  View::make('tabs::tabs',$viewData)->render();
 

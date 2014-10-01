@@ -29,16 +29,19 @@ abstract class Tabs {
 
     /**
      * converts the nested associative array of name to a simple index array
+     * @param $tabs
+     * @param $includeMain
      * @return array
      */
-    protected function convertTabNamesToSimpleArray($tabs) {
+    protected function convertTabNamesToSimpleArray($tabs, $includeMain = false) {
 
         $parsed = [];
 
         foreach ($tabs as $tab):
-           if (!isset($tab['subtabs'])):
+           if ((!isset($tab['subtabs'])) || ($includeMain)):
             $parsed[] = $tab['tab'];
-          else:
+          endif;
+          if (isset($tab['subtabs'])):
             $arr = array_values($tab['subtabs']);
             $parsed = array_merge($parsed, $arr);
           endif;
