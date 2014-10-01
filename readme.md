@@ -1,8 +1,8 @@
 [![Latest Stable Version](https://poser.pugx.org/fish/laravel-tabs/v/stable.svg)](https://packagist.org/packages/fish/laravel-tabs) [![Total Downloads](https://poser.pugx.org/fish/laravel-tabs/downloads.svg)](https://packagist.org/packages/fish/laravel-tabs) [![Latest Unstable Version](https://poser.pugx.org/fish/laravel-tabs/v/unstable.svg)](https://packagist.org/packages/fish/laravel-tabs) [![License](https://poser.pugx.org/fish/laravel-tabs/license.svg)](https://packagist.org/packages/fish/laravel-tabs)
 
-# Easily create Bootstrap tabs in your Laravel app
+# Generate Bootstrap tabs in your Laravel app
 
-This Laravel package provides an artisan command to easily generate bootstrap tabs.
+This Laravel 4+ package provides an artisan command to easily generate bootstrap tabs.
 The package creates a unique view for each tab, and allows you to embed the tabs wherever you need in your HTML.
 This makes for a clean uncluttered code, and allows you to skip the tedious process of writing the HTML yourself and focus on the content of the tabs.
 
@@ -11,6 +11,9 @@ This makes for a clean uncluttered code, and allows you to skip the tedious proc
     - [Generate the tabs](#generate-the-tabs)
     - [Fill the views with content](#fill-the-views-with-content)
     - [Pull the tabs into your view](#pull-the-tabs-into-your-view)
+        - [Syntax](#syntax)
+        - [Usage](#usage-1)
+        - [Laravel 5 notice](#laravel-5-notice)
 - [Config](#config)
 
 ## Installation
@@ -65,31 +68,65 @@ The views will reside by default under `app/views/[key]`.
 
 ### Pull the tabs into your view
 
-In your controller you simply pass a variable to the view:
+#### Syntax
+    Tabs::get($key, $data = [], $options = []);
+
+`$key`
+(string)(required) The key used while generating the tabs.
+
+`$data`
+(assoc. array)(optional) data to be passed to the views.
+
+`$options`
+(assoc. array)(optional) customization [options](#options).
+
+#### Usage
+
+In your controller pass the returned value to the main view, e.g:
 
     return View::make('some.view', ['tabs'=>Tabs::get('article')]);
 
 Then in your view echo `$tabs` wherever you want the tabs to appear.
 
-If you need to send data to the views pass an associative array as the second parameter, just like you would when returning a view.
+#### Laravel 5 notice
 
-If you want to override the global config file for a specific set of tabs, pass an associative array as the third parameter.
-Other than the config options you can also display a subset of tabs. To do so, pass an array of tabs using the `only` or `except` key.
-
-IMPORTANT: if you are using the blade syntax with Laravel 5 you need to use the HTML echo syntax, otherwise the HTML will be escaped and echoed as text.
+If you are using the blade syntax with Laravel 5 you need to use the HTML echo syntax, otherwise it will be escaped and echoed as text.
 
 So instead of `{{ $tabs }}` use `{!! $tabs !!}`.
 
 ## Config
 
-The package allows you to config a few options, namely:
+The package allows you to config a few options, each of which is applicable either globally (G) - i.e for all sets of tabs, locally (L) - i.e for the current set of tabs, or both.
+local options are passed as the third argument to the `get` method, while global options are set in the pacakage `config.php` file.
 
-1. Tabs type: `tabs` or `pills`.
-2. Tabs direction: `horizontal` or `vertical`.
-3. The path where the tabs views will be created relative to the views folder. Defaults to the key used when creating the tabs.
-4. The separator between words to be used in the artisan command. Default: `_`
-5. Whether or not to use a fade effect. Default: `true`
-6. Display of the titles. Options: `uc_first_word`, `uc_all_words`, `uc_no_words`, `locale`. Default: `uc_first_word`
+To change the global configuration you need to publish it to your project first:
+
+     php artisan config:publish fish/laravel-tabs
+
+The path to the published file is:
+
+    app/config/packages/fish/laravel-tabs/config.php
+
+### Options
+
+| Option         | Description                     | Scope   | Values               | Default             |
+|:-------------  |:-------------                   |:-----   |:-----                |:-------             |
+| type           |                                 | GL      | tabs,pills           | tabs                |
+| direction      |                                 | GL      | horizontal, vertical | horizontal          |
+| views_path     | The path where the              |  G      |                      | the key used when
+|                |  tabs views will be created      |        |                        |  creating the tabs
+|                |  relative to the views folder.   |        |                        |                      |                                                               |                     |
+| fade           | use fade effect?                | GL      | true, false          | true                |
+| seperatror     | the words seperator             | G       |                      |  _                   |
+|                |  in the artisan command         |          |                      |                     |
+| display        | Display of the titles           | GL      |  uc_first_word,      | uc_first_word       |
+|                |                                 |         |   uc_all_words,       |                     |
+|                |                                 |         |   uc_no_words,        |                     |
+|                |                                 |         |   [locale](#locale)              |                     |
+| except         | black-list of tabs              | L       |  [array, of, tabs]   |                     |
+|                | not to be presented             |         |                      |                     |
+| only           | white-list of tabs              | L       |  [array, of, tabs]   |                     |
+|                | to be presented                 |         |                      |                     |
 
 #### Locale
 
@@ -112,11 +149,5 @@ The array returned from the file should be constructed as follows:
 
 If no translation is found it will fallback to `uc_first_word`.
 
-To change the configuration you need to publish it to your project first:
 
-     php artisan config:publish fish/laravel-tabs
-
-The path to the published file is:
-
-    app/config/packages/fish/laravel-tabs/config.php
 
