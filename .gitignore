@@ -1,7 +1,5 @@
 /vendor
 composer.phar
 composer.lock
-composer.json
 .DS_Store
-/tests
-codeception.yml
+

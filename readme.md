@@ -84,7 +84,7 @@ The views will reside by default under `app/views/[key]`.
 
 In your controller pass the returned value to the main view, e.g:
 
-    return View::make('some.view', ['tabs'=>Tabs::get('article')]);
+    return View::make('main.view', ['tabs'=>Tabs::get('article')]);
 
 Then in your view echo `$tabs` wherever you want the tabs to appear.
 
@@ -114,10 +114,10 @@ The path to the published file is:
 | type           |                                 | GL      | tabs,pills           | tabs                |
 | direction      |                                 | GL      | horizontal, vertical | horizontal          |
 | views_path     | The path where the              |  G      |                      | the key used when
-|                |  tabs views will be created      |        |                        |  creating the tabs
+|                |  tabs partials will be created      |        |                        |  creating the tabs
 |                |  relative to the views folder.   |        |                        |                      |                                                               |                     |
 | fade           | use fade effect?                | GL      | true, false          | true                |
-| seperatror     | the words seperator             | G       |                      |  _                   |
+| seperatror     | the words seperator             | G       |  _(underscore), -(dash) |  _(underscore)                  |
 |                |  in the artisan command         |          |                      |                     |
 | display        | Display of the titles           | GL      |  uc_first_word,      | uc_first_word       |
 |                |                                 |         |   uc_all_words,       |                     |
