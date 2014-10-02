@@ -150,6 +150,7 @@ class TabBuilder extends Tabs {
             'direction' => $this->config('direction', 'horizontal',  $this->options) == 'vertical'?"nav-stacked":"",
             'fade' => $this->config('fade',true,$this->options)?"fade":""];
 
+        if (is_array($this->data))
         $viewData = array_merge($viewData, $this->data);
 
         if (isset($this->options['except']) or isset($this->options['only'])):

@@ -25,7 +25,6 @@
             "Fish\\LaravelTabs": "src/"
 
         }
-
     },
     "minimum-stability": "stable"
 }

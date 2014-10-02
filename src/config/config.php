@@ -7,8 +7,7 @@
     'direction' => 'horizontal',
 
     // where should the tab generated views be stored?
-    // the {{KEY}} placeholder will be replaced
-    // by the key you provide for each set of tabs
+    // the {{KEY}} placeholder will be replaced by the key you provide for each set of tabs
     // you can remove it if you want to save all sets of tabs in one place
     // the root is the app/views folder
     'views_path' => "{{KEY}}",
@@ -17,6 +16,7 @@
     'fade' => true,
 
     // which words separator to use in the artisan command?
+    // options: _, -
     'separator'=> "_",
 
     // how should the tab names be displayed?
