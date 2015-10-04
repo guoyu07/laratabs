@@ -56,7 +56,7 @@ class GenerateTabsCommand extends Command {
 
         $parsed = $this->parser->parse($tabs);
 
-        $saver  = App::make('Fish\\LaravelTabs\\Console\\TabsSaver');
+        $saver  = App::make('Fish\\LaravelTabs\\Console\\TabsSaver\\TabsSaver');
 
         $saver->save($key, $parsed);
 

@@ -38,6 +38,7 @@ abstract class Tabs {
         $parsed = [];
 
         foreach ($tabs as $tab):
+
            if ((!isset($tab['subtabs'])) || ($includeMain)):
             $parsed[] = $tab['tab'];
           endif;
@@ -111,16 +112,5 @@ abstract class Tabs {
         return true;
     }
 
-    /**
-     * get tabs file path
-    * @return string
-     */
-    public function tabsFile() {
 
-        $file =  base_path() . "/tabs.json";
-
-        return $file;
-
-    }
-
-} 
+}

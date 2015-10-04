@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\View;
 use Illuminate\Foundation\Application as App;
 use Fish\LaravelTabs\HTML\Exceptions\UndefinedKeyException;
 use Fish\LaravelTabs\HTML\Exceptions\MissingTabTemplateException;
+use Fish\LaravelTabs\Retriever\Retriever;
 use Exception;
 use Fish\LaravelTabs\HTML\Presenter\TabPresenter;
 
@@ -20,6 +21,11 @@ use Fish\LaravelTabs\HTML\Presenter\TabPresenter;
 
 class TabBuilder extends Tabs {
 
+    protected $retriever;
+
+    public function __construct(Retriever $retriever) {
+        $this->retriever = $retriever;
+    }
     /**
      * @var array associative array of tabs and subtabs
      */
@@ -70,21 +76,17 @@ class TabBuilder extends Tabs {
         $this->data = $data;
         $this->options = $options;
 
-        $file = $this->tabsFile();
+        $tabs = $this->retriever->retrieve($key);
 
-        if (!file_exists($file)) throw new Exception("Can not find tabs.json in the path {$file}");
-
-        $tabs = json_decode(file_get_contents($file),true);
-
-        if (!isset($tabs[$key]))
+        if (!$tabs)
             throw new UndefinedKeyException("undefined key '{$key}'");
 
-        $this->tabs = $tabs[$key];
+        $this->tabs = $tabs;
 
         if ($view = $this->missingView())
             throw new MissingTabTemplateException("The view {$view} for the key '{$key}' could not be found");
 
-        $this->tabsPresenters =  $this->convertTabsToPresenters($tabs[$key]);
+        $this->tabsPresenters =  $this->convertTabsToPresenters($tabs);
 
         return $this;
     }

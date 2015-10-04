@@ -45,8 +45,11 @@ That's it! You're all set to go. Run the `artisan` command from the Terminal to 
 
 ### Generate the tabs
 
-Start by creating the tabs from the command line.
-The basic syntax is:
+On the first time you use the package run the following to build the database tables: (unless you choose 'file' for storage)
+
+    php artisan tabs:init
+
+Now create the tabs:
 
     php artisan tabs:generate [key] [--tabs="list-of-tabs"]
 
@@ -112,12 +115,12 @@ The path to the published file is:
 | Option         | Description                     | Scope   | Values               | Default             |
 |:-------------  |:-------------                   |:-----   |:-----                |:-------             |
 | type           |                                 | GL      | tabs,pills           | tabs                |
+| storage        |                                 | G       | database, file       | database            |
 | direction      |                                 | GL      | horizontal, vertical | horizontal          |
 | views_path     | The path where the              |  G      |                      | the key used when
 |                |  tabs partials will be created      |        |                        |  creating the tabs
 |                |  relative to the views folder.   |        |                        |                      |                                                               |                     |
-| fade           | use fade effect?                | GL      | true, false          | true                |
-| seperatror     | the words seperator             | G       |  _(underscore), -(dash) |  _(underscore)                  |
+| fade           | use fade effect?                | GL      | true, false          | true                |            |
 |                |  in the artisan command         |          |                      |                     |
 | display        | Display of the titles           | GL      |  uc_first_word,      | uc_first_word       |
 |                |                                 |         |   uc_all_words,       |                     |

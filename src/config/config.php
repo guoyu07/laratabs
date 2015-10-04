@@ -1,5 +1,9 @@
 <?php return [
 
+    // database or file?
+
+    'storage' => 'database',
+
     // tabs or pills styling?
     'type' => 'tabs',
 
@@ -14,10 +18,6 @@
 
     // should the tabs have a fade effect?
     'fade' => true,
-
-    // which words separator to use in the artisan command?
-    // options: _, -
-    'separator'=> "_",
 
     // how should the tab names be displayed?
     // options: uc_first_word

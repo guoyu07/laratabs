@@ -41,9 +41,8 @@ class TabPresenter extends Tabs {
      */
     public function toName() {
 
-        $separator = $this->config('separator',"_");
         $format = $this->config('display',"first_word_uc");
-        $pieces = explode($separator, $this->tab);
+        $pieces = explode('_', $this->tab);
 
             switch ($format):
                 case "uc_first_word":
@@ -78,4 +77,4 @@ class TabPresenter extends Tabs {
         return $this->tab;
     }
 
-} 
+}
