@@ -11,9 +11,9 @@ namespace Fish\LaravelTabs\Console\TabsSaver;
 use Fish\LaravelTabs\Console\TabsSaver;
 use Fish\LaravelTabs\Console\Exceptions\NoTablesFoundException;
 use Fish\LaravelTabs\Tabs;
-use Key;
-use Tab;
-use Subtab;
+use Fish\LaravelTabs\Models\Key;
+use Fish\LaravelTabs\Models\Tab;
+use Fish\LaravelTabs\Models\Subtab;
 use Schema;
 
 class DatabaseTabsSaver extends Tabs implements TabsSaver {

@@ -1,7 +1,7 @@
 <?php
 namespace Fish\LaravelTabs\Retriever;
 
-use Key;
+use Fish\LaravelTabs\Models\Key;
 use DB;
 use Fish\LaravelTabs\HTML\Exceptions\UndefinedKeyException;
 
