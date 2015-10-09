@@ -51,7 +51,7 @@ class LaravelTabsServiceProvider extends ServiceProvider {
     {
 
         // register package
-        $this->package('fish/laravel-tabs','tabs');
+     //   $this->package('fish/laravel-tabs','tabs');
 
         $storage = $this->getStorage();
 

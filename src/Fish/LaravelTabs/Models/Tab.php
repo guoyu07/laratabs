@@ -2,6 +2,8 @@
 
 namespace Fish\LaravelTabs\Models;
 
+use Eloquent;
+
 class Tab extends Eloquent  {
 
   protected $table = 'mfet_tabs';
