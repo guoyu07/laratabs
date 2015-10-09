@@ -8,7 +8,6 @@ use Symfony\Component\Console\Input\InputArgument;
 use Fish\LaravelTabs\Console\Exceptions\InvalidFormatException;
 use Fish\LaravelTabs\Retriever\Retriever;
 use App;
-use Key;
 
 class ListTabsCommand extends Command {
 

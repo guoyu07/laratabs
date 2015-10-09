@@ -2,19 +2,18 @@
 
 namespace Fish\LaravelTabs\Models;
 
-use Eloquent;
 
-class Tab extends Eloquent  {
+class Tab extends \Eloquent  {
 
   protected $table = 'mfet_tabs';
 
   protected $fillable = ['name'];
 
     function subtabs() {
-    return $this->hasMany('Subtab');
+    return $this->hasMany('Fish\LaravelTabs\Models\Subtab');
   }
 
     function key() {
-    return $this->belongsTo('Key');
+    return $this->belongsTo('Fish\LaravelTabs\Models\Key');
   }
 }
