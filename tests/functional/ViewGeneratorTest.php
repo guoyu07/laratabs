@@ -1,5 +1,5 @@
 <?php
-use Fish\LaravelTabs\Console\ViewsGenerator;
+use Fish\Laratabs\Console\ViewsGenerator;
 
 class ViewGeneratorTest extends TabsTester
 {

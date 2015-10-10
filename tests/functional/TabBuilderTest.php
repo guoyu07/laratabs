@@ -1,6 +1,6 @@
 <?php
 
-use Fish\LaravelTabs\HTML\TabBuilder;
+use Fish\Laratabs\HTML\TabBuilder;
 class TabBuilderTest extends TabsTester
 {
    /**
@@ -92,7 +92,7 @@ class TabBuilderTest extends TabsTester
 
     /**
      *  @test
-     *  @expectedException Fish\LaravelTabs\HTML\Exceptions\UndefinedKeyException
+     *  @expectedException Fish\Laratabs\HTML\Exceptions\UndefinedKeyException
      */
     public function throw_an_exception_when_the_key_does_not_exist() {
        $this->builder->get('not-existant-key');
@@ -100,7 +100,7 @@ class TabBuilderTest extends TabsTester
 
     /**
      *  @test
-     *  @expectedException Fish\LaravelTabs\HTML\Exceptions\MissingTabTemplateException
+     *  @expectedException Fish\Laratabs\HTML\Exceptions\MissingTabTemplateException
      */
     public function throw_an_exception_when_view_can_not_be_found() {
         $view = app_path()."/views/tabs/tab1.blade.php";

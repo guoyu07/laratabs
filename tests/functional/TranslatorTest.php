@@ -1,6 +1,6 @@
 <?php
 
-use Fish\LaravelTabs\HTML\Presenter\Translator;
+use Fish\Laratabs\HTML\Presenter\Translator;
 
 class TranslatorTest extends \Codeception\TestCase\Test
 {

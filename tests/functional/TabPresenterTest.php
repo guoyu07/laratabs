@@ -1,6 +1,6 @@
 <?php
 
-use Fish\LaravelTabs\HTML\Presenter\TabPresenter;
+use Fish\Laratabs\HTML\Presenter\TabPresenter;
 
 class TabPresenterTest extends \Codeception\TestCase\Test
 {

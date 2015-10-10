@@ -1,7 +1,7 @@
 <?php
 
-use Fish\LaravelTabs\Console\FieldsParser;
-use Fish\LaravelTabs\Console\Exceptions\InvalidFormatException;
+use Fish\Laratabs\Console\FieldsParser;
+use Fish\Laratabs\Console\Exceptions\InvalidFormatException;
 class FieldsParserTest extends TabsTester
 {
    /**
@@ -31,7 +31,7 @@ class FieldsParserTest extends TabsTester
     }
 
     /** @test
-     *  @expectedException Fish\LaravelTabs\Console\Exceptions\InvalidFormatException
+     *  @expectedException Fish\Laratabs\Console\Exceptions\InvalidFormatException
      */
     public function throw_an_exception_when_invalid_tabs_are_entered() {
          $this->parse->parse('firstTab:secondTab:thirdTab|foruthTab,fifthTab');
@@ -39,7 +39,7 @@ class FieldsParserTest extends TabsTester
     }
 
     /** @test
-     *  @expectedException Fish\LaravelTabs\Console\Exceptions\InvalidFormatException
+     *  @expectedException Fish\Laratabs\Console\Exceptions\InvalidFormatException
      */
     public function throw_an_exception_when_invalid_subtabs_are_entered() {
         $this->parse->parse('firstTab, secondTab,thirdTab:foruthTab||ad,fifthTab');

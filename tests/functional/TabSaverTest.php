@@ -1,6 +1,6 @@
 <?php
 
-use Fish\LaravelTabs\Console\TabsSaver;
+use Fish\Laratabs\Console\TabsSaver;
 use Illuminate\Config\Repository as Config;
 use \App;
 

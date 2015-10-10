@@ -13,7 +13,7 @@
     ],
     "require": {
         "php": ">=5.4.0",
-        "illuminate/support": "~4.0|~4.1|~4.2|~5.0"
+        "illuminate/support": "~4.0|~4.1|~4.2"
     },
 
     "require-dev": {
@@ -22,7 +22,7 @@
     },
     "autoload": {
         "psr-0": {
-            "Fish\\LaravelTabs": "src/"
+            "Fish\\Laratabs": "src/"
         }
     },
     "minimum-stability": "stable"
