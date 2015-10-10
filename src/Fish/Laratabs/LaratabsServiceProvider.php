@@ -79,7 +79,7 @@ class LaratabsServiceProvider extends ServiceProvider {
 
     private function getStorage() {
 
-         $storage = Config::get("laratabs.storage");
+         $storage = Config::get("laratabs::storage");
 
          return (strtolower($storage)=='file')?ucfirst($storage):'Database';
 
