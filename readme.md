@@ -4,7 +4,7 @@
 
 # Generate Bootstrap tabs in your Laravel app
 
-This Laravel 4 package provides an artisan command to easily generate bootstrap tabs.
+This Laravel package provides an artisan command to easily generate bootstrap tabs.
 The package creates a unique view for each tab, and allows you to embed the tabs wherever you need in your HTML.
 This makes for a clean uncluttered code, and allows you to skip the tedious process of writing the HTML yourself and focus on the content of the tabs.
 
