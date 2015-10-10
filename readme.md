@@ -1,4 +1,4 @@
-[![Latest Stable Version](https://poser.pugx.org/fish/laravel-tabs/v/stable.svg)](https://packagist.org/packages/fish/laravel-tabs) [![Total Downloads](https://poser.pugx.org/fish/laravel-tabs/downloads.svg)](https://packagist.org/packages/fish/laravel-tabs) [![Latest Unstable Version](https://poser.pugx.org/fish/laravel-tabs/v/unstable.svg)](https://packagist.org/packages/fish/laravel-tabs) [![License](https://poser.pugx.org/fish/laravel-tabs/license.svg)](https://packagist.org/packages/fish/laravel-tabs)
+[![Latest Stable Version](https://poser.pugx.org/fish/laratabs/v/stable.svg)](https://packagist.org/packages/fish/laratabs) [![Total Downloads](https://poser.pugx.org/fish/laratabs/downloads.svg)](https://packagist.org/packages/fish/laratabs) [![Latest Unstable Version](https://poser.pugx.org/fish/laratabs/v/unstable.svg)](https://packagist.org/packages/fish/laratabs) [![License](https://poser.pugx.org/fish/laratabs/license.svg)](https://packagist.org/packages/fish/laratabs)
 
 ### Note: this version is for laravel 4 only. Laravel 5 support coming soon.
 
@@ -20,7 +20,7 @@ This makes for a clean uncluttered code, and allows you to skip the tedious proc
 
 ## Installation
 
-Begin by installing this package through Composer. Edit your project's `composer.json` file to require `fish/laravel-tabs`.
+Begin by installing this package through Composer. Edit your project's `composer.json` file to require `fish/laratabs`.
 
 	"require": {
 		"fish/laratabs": "dev-master"
@@ -100,11 +100,11 @@ local options are passed as the third argument to the `get` method, while global
 
 To change the global configuration you need to publish it to your project first:
 
-     php artisan config:publish fish/laravel-tabs
+     php artisan config:publish fish/laratabs
 
 The path to the published file is:
 
-    app/config/packages/fish/laravel-tabs/config.php
+    app/config/packages/fish/laratabs/config.php
 
 ### Options
 
