@@ -23,7 +23,7 @@ This makes for a clean uncluttered code, and allows you to skip the tedious proc
 Begin by installing this package through Composer. Edit your project's `composer.json` file to require `fish/laravel-tabs`.
 
 	"require": {
-		"fish/laravel-tabs": "dev-master"
+		"fish/laratabs": "dev-master"
 	}
 
 Next, update Composer from the Terminal:
