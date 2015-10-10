@@ -25,5 +25,6 @@
             "Fish\\Laratabs": "src/"
         }
     },
+
     "minimum-stability": "stable"
 }
