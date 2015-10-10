@@ -1,5 +1,5 @@
 {
-    "name": "fish/laravel-tabs",
+    "name": "fish/laratabs",
     "description": "Artisan command to create bootstrap tabs and place each tab within its own view",
     "keywords": ["tabs",
                 "bootstrap",
