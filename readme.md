@@ -1,8 +1,10 @@
 [![Latest Stable Version](https://poser.pugx.org/fish/laravel-tabs/v/stable.svg)](https://packagist.org/packages/fish/laravel-tabs) [![Total Downloads](https://poser.pugx.org/fish/laravel-tabs/downloads.svg)](https://packagist.org/packages/fish/laravel-tabs) [![Latest Unstable Version](https://poser.pugx.org/fish/laravel-tabs/v/unstable.svg)](https://packagist.org/packages/fish/laravel-tabs) [![License](https://poser.pugx.org/fish/laravel-tabs/license.svg)](https://packagist.org/packages/fish/laravel-tabs)
 
+### Note: this version is for laravel 4 only. If you are using laravel 5 pull the `dev-master` branch.
+
 # Generate Bootstrap tabs in your Laravel app
 
-This Laravel 4+ package provides an artisan command to easily generate bootstrap tabs.
+This Laravel 4 package provides an artisan command to easily generate bootstrap tabs.
 The package creates a unique view for each tab, and allows you to embed the tabs wherever you need in your HTML.
 This makes for a clean uncluttered code, and allows you to skip the tedious process of writing the HTML yourself and focus on the content of the tabs.
 
