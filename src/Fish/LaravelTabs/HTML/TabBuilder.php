@@ -141,7 +141,7 @@ class TabBuilder extends Tabs {
      */
     public function __toString() {
 
-        $viewsPath = Config::get("tabs::views_path","{{KEY}}");
+        $viewsPath = Config::get("laratabs.views_path","{{KEY}}");
         $viewsPath = preg_replace("/{{KEY}}/i",$this->key,$viewsPath);
 
         $tabs = $this->convertTabNamesToSimpleArray($this->tabs, true);
@@ -163,7 +163,7 @@ class TabBuilder extends Tabs {
             $viewData = array_merge($viewData, ['only'=>$only]);
         endif;
 
-        $html =  View::make('tabs::tabs',$viewData)->render();
+        $html =  View::make('laratabs.tabs',$viewData)->render();
 
         return $html;
 

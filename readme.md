@@ -1,6 +1,6 @@
 [![Latest Stable Version](https://poser.pugx.org/fish/laravel-tabs/v/stable.svg)](https://packagist.org/packages/fish/laravel-tabs) [![Total Downloads](https://poser.pugx.org/fish/laravel-tabs/downloads.svg)](https://packagist.org/packages/fish/laravel-tabs) [![Latest Unstable Version](https://poser.pugx.org/fish/laravel-tabs/v/unstable.svg)](https://packagist.org/packages/fish/laravel-tabs) [![License](https://poser.pugx.org/fish/laravel-tabs/license.svg)](https://packagist.org/packages/fish/laravel-tabs)
 
-### Note: this version is for laravel 4 only. If you are using laravel 5 pull the `dev-master` branch.
+### Note: this version is for laravel 4 only. Laravel 5 support coming soon.
 
 # Generate Bootstrap tabs in your Laravel app
 
@@ -92,12 +92,6 @@ In your controller pass the returned value to the main view, e.g:
     return View::make('main.view', ['tabs'=>Tabs::get('article')]);
 
 Then in your view echo `$tabs` wherever you want the tabs to appear.
-
-#### Laravel 5 notice
-
-If you are using the blade syntax with Laravel 5 you need to use the HTML echo syntax, otherwise it will be escaped and echoed as text.
-
-So instead of `{{ $tabs }}` use `{!! $tabs !!}`.
 
 ## Config
 

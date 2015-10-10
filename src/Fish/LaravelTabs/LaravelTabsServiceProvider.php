@@ -75,7 +75,7 @@ class LaravelTabsServiceProvider extends ServiceProvider {
 
     private function getStorage() {
 
-         $storage = Config::get("tabs::storage");
+         $storage = Config::get("laratabs.storage");
 
          return (strtolower($storage)=='file')?ucfirst($storage):'Database';
 

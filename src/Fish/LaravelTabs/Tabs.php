@@ -60,7 +60,7 @@ abstract class Tabs {
     protected function getViewsPath($key) {
 
         $viewsPath = $this->getLaravelVersion()==5? base_path()."/resources/views/": base_path(). "/app/views/";
-        $path = Config::get("tabs::views_path","{{KEY}}");
+        $path = Config::get("laratabs.views_path","{{KEY}}");
 
         $path = $viewsPath . preg_replace("/{{KEY}}/i",$key, $path);
 
@@ -81,7 +81,7 @@ abstract class Tabs {
         if (isset($options[$key]) && !in_array($options[$key],$allowed[$key]))
             return $default;
 
-        $conf = isset($options[$key])?$options[$key]:Config::get("tabs::{$key}", $default);
+        $conf = isset($options[$key])?$options[$key]:Config::get("laratabs.{$key}", $default);
 
         return $conf;
 
