@@ -91,7 +91,7 @@ In your controller pass the returned value to the main view, e.g:
 
     return View::make('main.view', ['tabs'=>Tabs::get('article')]);
 
-Then in your view echo `$tabs` wherever you want the tabs to appear.
+Then in your view echo {!! $tabs !!} wherever you want the tabs to appear.
 
 ## Config
 
@@ -100,11 +100,11 @@ local options are passed as the third argument to the `get` method, while global
 
 To change the global configuration you need to publish it to your project first:
 
-     php artisan config:publish fish/laratabs
+     php artisan vendor:publish
 
 The path to the published file is:
 
-    app/config/packages/fish/laratabs/config.php
+    config/laratabs.php
 
 ### Options
 
