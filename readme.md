@@ -1,6 +1,6 @@
 [![Latest Stable Version](https://poser.pugx.org/fish/laratabs/v/stable.svg)](https://packagist.org/packages/fish/laratabs) [![Total Downloads](https://poser.pugx.org/fish/laratabs/downloads.svg)](https://packagist.org/packages/fish/laratabs) [![Latest Unstable Version](https://poser.pugx.org/fish/laratabs/v/unstable.svg)](https://packagist.org/packages/fish/laratabs) [![License](https://poser.pugx.org/fish/laratabs/license.svg)](https://packagist.org/packages/fish/laratabs)
 
-### Note: this version is for laravel 4 only. Laravel 5 support coming soon.
+### Note: this version is for laravel 5 only. For laravel 4 specify in your composer version `1.0` instead of `dev-master`.
 
 # Generate Bootstrap tabs in your Laravel app
 
@@ -32,7 +32,7 @@ Next, update Composer from the Terminal:
 
 Once this operation completes, the final step is to add the service provider. Open `app/config/app.php`, and add a new item to the providers array.
 
-    'Fish\Laratabs\LaratabsServiceProvider'
+    Fish\Laratabs\LaratabsServiceProvider::class
 
 On the client-side remember to include bootstrap's CSS and JavaScript files. The quickest way is using a CDN:
 

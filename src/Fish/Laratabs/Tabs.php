@@ -59,7 +59,7 @@ abstract class Tabs {
      */
     protected function getViewsPath($key) {
 
-        $viewsPath = base_path(). "/app/views/";
+        $viewsPath = __DIR__ . "/../../../../../../resources/views/";
         $path = Config::get("laratabs.views_path","{{KEY}}");
 
         $path = $viewsPath . preg_replace("/{{KEY}}/i",$key, $path);
@@ -81,7 +81,7 @@ abstract class Tabs {
         if (isset($options[$key]) && !in_array($options[$key],$allowed[$key]))
             return $default;
 
-        $conf = isset($options[$key])?$options[$key]:Config::get("laratabs::{$key}", $default);
+        $conf = isset($options[$key])?$options[$key]:Config::get("laratabs.{$key}", $default);
 
         return $conf;
 

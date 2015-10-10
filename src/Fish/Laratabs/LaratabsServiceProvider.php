@@ -14,6 +14,10 @@ class LaratabsServiceProvider extends ServiceProvider {
      */
     public function boot() {
 
+            $this->publishes([
+        __DIR__.'/../../config/config.php' => config_path('laratabs.php'),
+    ]);
+
         // bind artisan command to the IoC container
         $this->app->bind('fish::command.tabs', function() {
             return $this->app->make('Fish\Laratabs\Console\Command\GenerateTabsCommand');
@@ -52,7 +56,6 @@ class LaratabsServiceProvider extends ServiceProvider {
     {
 
         // register package
-        $this->package('fish/laratabs','laratabs');
 
         View::addNamespace('laratabs', __DIR__.'/../../views');
 
@@ -79,7 +82,7 @@ class LaratabsServiceProvider extends ServiceProvider {
 
     private function getStorage() {
 
-         $storage = Config::get("laratabs::storage");
+         $storage = Config::get("laratabs.storage");
 
          return (strtolower($storage)=='file')?ucfirst($storage):'Database';
 
