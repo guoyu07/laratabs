@@ -1,6 +1,6 @@
 [![Latest Stable Version](https://poser.pugx.org/fish/laratabs/v/stable.svg)](https://packagist.org/packages/fish/laratabs) [![Total Downloads](https://poser.pugx.org/fish/laratabs/downloads.svg)](https://packagist.org/packages/fish/laratabs) [![Latest Unstable Version](https://poser.pugx.org/fish/laratabs/v/unstable.svg)](https://packagist.org/packages/fish/laratabs) [![License](https://poser.pugx.org/fish/laratabs/license.svg)](https://packagist.org/packages/fish/laratabs)
 
-### Note: this version is for laravel 5 only. For laravel 4 specify in your composer version `1.0` instead of `dev-master`.
+### Note: this version is for laravel 5 only. For laravel 4 specify in your composer version `^1.0` instead of `^2.0`.
 
 # Generate Bootstrap tabs in your Laravel app
 
@@ -15,7 +15,6 @@ This makes for a clean uncluttered code, and allows you to skip the tedious proc
     - [Pull the tabs into your view](#pull-the-tabs-into-your-view)
         - [Syntax](#syntax)
         - [Usage](#usage-1)
-        - [Laravel 5 notice](#laravel-5-notice)
 - [Config](#config)
 
 ## Installation
@@ -23,7 +22,7 @@ This makes for a clean uncluttered code, and allows you to skip the tedious proc
 Begin by installing this package through Composer. Edit your project's `composer.json` file to require `fish/laratabs`.
 
 	"require": {
-		"fish/laratabs": "dev-master"
+		"fish/laratabs": "^2.0"
 	}
 
 Next, update Composer from the Terminal:
